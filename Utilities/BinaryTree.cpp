@@ -2,22 +2,22 @@
 #include <cstdio>
 #include <cstdlib>
 
-BinaryTree* createBinaryTreeNode(int vaule) {
-    BinaryTree *pNode = new BinaryTree;
+BinaryTreeNode* createBinaryTreeNode(int vaule) {
+    BinaryTreeNode *pNode = new BinaryTreeNode;
     pNode->value = vaule;
     pNode->leftChild = nullptr;
     pNode->rightChild = nullptr;
     return pNode;
 }
 
-void connectBinaryTree(BinaryTree *parent, BinaryTree *left, BinaryTree *right) {
+void connectBinaryTree(BinaryTreeNode *parent, BinaryTreeNode *left, BinaryTreeNode *right) {
     if (parent != nullptr) {
         parent->leftChild = left; 
         parent->rightChild = right; 
     }
 }
 
-void printBinaryTreeNode(const BinaryTree *pNode) {
+void printBinaryTreeNode(const BinaryTreeNode *pNode) {
     if (pNode != nullptr) {
         printf("Parent node value is: %d\n", pNode->value); 
         if (pNode->leftChild != nullptr)
@@ -35,7 +35,7 @@ void printBinaryTreeNode(const BinaryTree *pNode) {
 }
 
 // print tree by preorder
-void printBinaryTree(const BinaryTree *pRoot) {
+void printBinaryTree(const BinaryTreeNode *pRoot) {
     printBinaryTreeNode(pRoot);
     if (pRoot != nullptr) {
         if (pRoot->leftChild != nullptr) 
@@ -46,11 +46,11 @@ void printBinaryTree(const BinaryTree *pRoot) {
     }
 }
 
-// destory BinaryTree by preoder
-void destroyBinaryTree(BinaryTree *pRoot) {
+// destory BinaryTreeNode by preoder
+void destroyBinaryTree(BinaryTreeNode *pRoot) {
     if (pRoot != nullptr) {
-        BinaryTree *leftNode = pRoot->leftChild;
-        BinaryTree *rightNode = pRoot->rightChild;
+        BinaryTreeNode *leftNode = pRoot->leftChild;
+        BinaryTreeNode *rightNode = pRoot->rightChild;
 
         delete pRoot;
         pRoot = nullptr;

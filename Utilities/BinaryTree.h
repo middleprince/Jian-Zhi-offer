@@ -1,15 +1,15 @@
 #ifndef BinaryTree_h
 #define BinaryTree_h
 
-struct BinaryTree{
-    int value;
-    BinaryTree *leftChild;
-    BinaryTree *rightChild;
+struct BinaryTreeNode{
+   int value;
+   BinaryTreeNode *leftChild;
+   BinaryTreeNode *rightChild;
 };
 
-BinaryTree* createBinaryTreeNode(int); 
-void connectBinaryTreeNode(BinaryTree *, BinaryTree *, BinaryTree *);
-void printBinaryTreeNode(const BinaryTree *);
-void printBinaryTree(const BinaryTree *);
-void destroyBinaryTree(BinaryTree *);
+BinaryTreeNode* createBinaryTreeNode(int); 
+void connectBinaryTreeNode(BinaryTreeNode *,BinaryTreeNode *, BinaryTreeNode *);
+void printBinaryTreeNode(const BinaryTreeNode *);
+void printBinaryTree(const BinaryTreeNode *);
+void destroyBinaryTree(BinaryTreeNode *);
 #endif
