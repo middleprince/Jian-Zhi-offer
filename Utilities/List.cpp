@@ -1,6 +1,7 @@
 #include "List.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
+
 
 ListNode *createListNode(int value) {
     ListNode *pNode = new ListNode;  
@@ -78,7 +79,7 @@ void printListNode(ListNode *pNode) {
         printf("Error to print  Listnode\n");
         exit(1);
     }
-    printf("Node value: %d", pNode->value);
+    printf("Node value:\t %d\n", pNode->value);
 }
 
 void printList(ListNode *head) {
@@ -90,7 +91,7 @@ void printList(ListNode *head) {
     printf("List print begin\n");
     int i = 0;
     while (pNode != nullptr) {
-        printf("%d's node's value: %d\n", i, pNode->value); 
+        printf("%d's node's value: \t%d\n", i, pNode->value); 
         ++i;
         pNode = pNode->pNext;
     }
