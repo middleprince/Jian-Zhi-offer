@@ -88,7 +88,8 @@ int main() {
     stack.pushToTail(88); 
     testInfo("remove item from non-stack", stack.popFromTail(), 88);
     testInfo("remove item from non-stack", stack.popFromTail(), 99);
-    testInfo("remove item from non-stack", stack.popFromTail(), 12);
+    stack.pushToTail(2019);
+    testInfo("remove item from non-stack", stack.popFromTail(), 2019);
 
     return 0;
 }
