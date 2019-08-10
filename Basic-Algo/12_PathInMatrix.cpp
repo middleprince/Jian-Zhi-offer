@@ -15,9 +15,8 @@
 //   
 #include <cstdio>
 #include <stdexcept>
-#include <stack>
-#include <memory>
 #include <exception>
+#include <cstring>
 
 bool hasPathCoreFunc(const char*, int, int, int, int,
         const char*, int &, bool *);
@@ -25,32 +24,34 @@ bool hasPathCoreFunc(const char*, int, int, int, int,
 bool pathInArray(const char *map , int rows, int cols, const char *target) {
     if (map == nullptr || rows <= 0 || cols <= 0 
         || target == nullptr) {
-        throw std::runtime_error("invalid arguments");
-        //return false;
+        // TOFIX: error in link
+        //throw std::runtime_error("invalid arguments");
+        return false;
     }
 
-    bool *visited = new bool[rows*cols];
-    memset(visited, 0, size_t(rows*cols));
+    bool visited[rows*cols] = {0};
+    //bool *visited = new bool[rows*cols]();
+    //memset(visited, 0, size_t(rows*cols));
     int path_length = 0;
     
     for (int row = 0; row < rows; ++row) {
         for (int col = 0; col < cols; ++col) {
             if (hasPathCoreFunc(map, rows, cols, row, col, 
                     target, path_length, visited)) {
-                delete[] visited;
+                //delete[] visited;
                 return true;
             } 
         }
     }
-    delete[] visited;
+    //delete[] visited;
     return false;
 }
 
 bool hasPathCoreFunc(const char *map, int rows, int cols, int row, int col,
     const char *target, int &path_length, bool *visited) {
     
-    if (map[path_length] == '\0' && path_length <= rows * cols) {
-        printf("## debug target scan complete\n");
+    // FIXED: fix bug which i wrote map[path_length] OMG 
+    if (target[path_length] == '\0' && path_length <= rows * cols) {
         return true;
     }
 
@@ -62,8 +63,8 @@ bool hasPathCoreFunc(const char *map, int rows, int cols, int row, int col,
         visited[row*cols+col] = true;
         ++path_length; 
 
-        //printf("## Debug: the row = %d, col = %d, path_length = %d, target[%d] = %c\n", row, col, path_length, path_length, target[path_length-1]);
-        printf("## debug: path_length = %d\n", path_length);
+        //printf("## Debug: the row = %d, col = %d, path_length = %d, target[%d] = %c\n", row, col, path_length, path_length, target[path_length]);
+        //printf("## debug: path_length = %d\n", path_length);
 
         path_exist = hasPathCoreFunc(map, rows, cols, row, col-1, 
             target, path_length, visited)  
@@ -94,17 +95,19 @@ void Test(const char* testName, const char* matrix, int rows, int cols,
 {
     if(testName != nullptr)
         printf("%s begins: ", testName);
-    try {
-        if(pathInArray(matrix, rows, cols, str) == expected)
-            printf("Passed.\n");
-        else
-            printf("FAILED.\n");
-    } catch(std::runtime_error &e) {
-        printf("Erro : %s\n", e.what()); 
-    }
-    //if(pathInArray(matrix, rows, cols, str) == expected)
-    //    printf("Passed.\n");
-    //else
+    
+    // TOFIX: error in link the exception operation
+    //try {
+    //    if(pathInArray(matrix, rows, cols, str) == expected)
+    //        printf("Passed.\n");
+    //    else
+    //        printf("FAILED.\n");
+    //} catch(std::runtime_error &e) {
+    //    printf("Erro : %s\n", e.what()); 
+    //}
+    if(pathInArray(matrix, rows, cols, str) == expected)
+        printf("Passed.\n");
+    else
         printf("FAILED.\n");
 
 }
