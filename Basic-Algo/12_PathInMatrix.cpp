@@ -24,26 +24,26 @@ bool hasPathCoreFunc(const char*, int, int, int, int,
 bool pathInArray(const char *map , int rows, int cols, const char *target) {
     if (map == nullptr || rows <= 0 || cols <= 0 
         || target == nullptr) {
-        // TOFIX: error in link
-        //throw std::runtime_error("invalid arguments");
-        return false;
+        // FIXED: error in link
+        throw std::runtime_error("invalid arguments");
+        //return false;
     }
 
-    bool visited[rows*cols] = {0};
-    //bool *visited = new bool[rows*cols]();
-    //memset(visited, 0, size_t(rows*cols));
+    //bool visited[rows*cols] = {0};
+    bool *visited = new bool[rows*cols]();
+    memset(visited, 0, size_t(rows*cols));
     int path_length = 0;
     
     for (int row = 0; row < rows; ++row) {
         for (int col = 0; col < cols; ++col) {
             if (hasPathCoreFunc(map, rows, cols, row, col, 
                     target, path_length, visited)) {
-                //delete[] visited;
+                delete[] visited;
                 return true;
             } 
         }
     }
-    //delete[] visited;
+    delete[] visited;
     return false;
 }
 
@@ -96,19 +96,19 @@ void Test(const char* testName, const char* matrix, int rows, int cols,
     if(testName != nullptr)
         printf("%s begins: ", testName);
     
-    // TOFIX: error in link the exception operation
-    //try {
-    //    if(pathInArray(matrix, rows, cols, str) == expected)
-    //        printf("Passed.\n");
-    //    else
-    //        printf("FAILED.\n");
-    //} catch(std::runtime_error &e) {
-    //    printf("Erro : %s\n", e.what()); 
-    //}
-    if(pathInArray(matrix, rows, cols, str) == expected)
-        printf("Passed.\n");
-    else
-        printf("FAILED.\n");
+    //Fixed: error in link the exception operation
+    try {
+        if(pathInArray(matrix, rows, cols, str) == expected)
+            printf("Passed.\n");
+        else
+            printf("FAILED.\n");
+    } catch(std::runtime_error &e) {
+        printf("Erro : %s\n", e.what()); 
+    }
+    //if(pathInArray(matrix, rows, cols, str) == expected)
+    //    printf("Passed.\n");
+    //else
+    //    printf("FAILED.\n");
 
 }
 
