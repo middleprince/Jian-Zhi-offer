@@ -52,7 +52,7 @@ void Test(int number, unsigned int expected)
     printf("\n");
 }
 
-int main(int argc, char* argv[])
+int main()
 {
     // 输入0，期待的输出是0
     Test(0, 0);
