@@ -11,16 +11,16 @@ int deleteNode(ListNode **head, ListNode *to_delete) {
     if (head == nullptr || to_delete == nullptr)
         return -1;
     
-    // ToFix: bug for address out of bundry
+    // Fixed: bug for address out of bundry, there is only one node exist
+    //        in list, the onde to be deleted. this should be adress 
     //
-    if (*head == to_delete) {
-        printf("##debug in delete head\n");
-        printf("before delete head is: %d\n", (*head)->value);
+    if (*head == to_delete && to_delete->pNext == nullptr) {
+        //printf("##debug in delete head\n");
+        //printf("before delete head is: %d\n", (*head)->value);
         *head = (*head)->pNext;
-        to_delete->pNext = nullptr;
         delete to_delete; 
         to_delete = nullptr;
-        printf("after delete head is %d \n", (*head)->value);
+        //printf("after delete head is %d \n", (*head)->value);
     }
     
     ListNode *curr = *head;
