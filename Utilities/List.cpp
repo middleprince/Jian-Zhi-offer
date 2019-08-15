@@ -76,8 +76,8 @@ void connectListNode(ListNode *pCurrent, ListNode *pNext) {
 
 void printListNode(ListNode *pNode) {
     if ( pNode == nullptr) { 
-        printf("Error to print  Listnode\n");
-        exit(1);
+        printf("Node value nullptr\n");
+        return;
     }
     printf("Node value:\t %d\n", pNode->value);
 }
