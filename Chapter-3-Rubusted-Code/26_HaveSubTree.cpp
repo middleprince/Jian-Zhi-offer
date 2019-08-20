@@ -46,7 +46,7 @@ bool doesTree1HaveTree2(BinaryTreeNode* pRoot1, BinaryTreeNode* pRoot2)
 
 bool equal(double num1, double num2)
 {
-    if((num1 - num2 > epsilon) && (num1 - num2 < epsilon))
+    if((num1 - num2 > -epsilon) && (num1 - num2 < epsilon))
         return true;
     else
         return false;
