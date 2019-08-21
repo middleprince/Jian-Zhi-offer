@@ -10,7 +10,7 @@ BinaryTreeNode* createBinaryTreeNode(int vaule) {
     return pNode;
 }
 
-void connectBinaryTree(BinaryTreeNode *parent, BinaryTreeNode *left, BinaryTreeNode *right) {
+void connectBinaryTreeNode(BinaryTreeNode *parent, BinaryTreeNode *left, BinaryTreeNode *right) {
     if (parent != nullptr) {
         parent->leftChild = left; 
         parent->rightChild = right; 
