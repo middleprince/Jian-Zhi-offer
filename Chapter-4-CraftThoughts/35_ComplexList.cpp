@@ -19,11 +19,11 @@ void connectNode(ComplexListNode *p_node, ComplexListNode *p_next,
     if (p_node == nullptr)
         return ;
     p_node->p_next = p_next;
-    p_next->p_sibling = p_sibling;
+    p_node->p_sibling = p_sibling;
 }
 
 void printList(ComplexListNode *p_head) {
-    if (p_head == nullptr)
+    if (p_head ==nullptr)
         return ;
     ComplexListNode *p_node = p_head;
     while (p_node) {

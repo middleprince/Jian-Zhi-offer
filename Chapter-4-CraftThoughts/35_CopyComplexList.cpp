@@ -35,6 +35,7 @@ void makeListCopy(ComplexListNode *p_head) {
         p_node_copy->p_next = p_node->p_next;
         p_node->p_next = p_node_copy;
 
+
         p_node = p_node_copy->p_next;
     } 
 }
@@ -43,13 +44,13 @@ void connectSibling(ComplexListNode *p_head) {
     if (p_head == nullptr) 
         return;
     ComplexListNode *p_node = p_head;
-    ComplexListNode *p_node_copy = p_node->p_next;
-
-    while (p_node != nullptr) {
-        if (p_node->p_sibling) 
-            p_node_copy->p_sibling = p_node->p_sibling->p_next;
-        p_node = p_node_copy->p_next;
+    ComplexListNode *p_node_copy = nullptr;
+    while (p_node) {
         p_node_copy = p_node->p_next;
+        if (p_node->p_sibling) {
+            p_node_copy->p_sibling = p_node->p_sibling->p_next;
+        }
+        p_node = p_node_copy->p_next; 
     }
 }
 
@@ -58,12 +59,12 @@ ComplexListNode* splitList(ComplexListNode *p_head) {
         return nullptr;
     ComplexListNode *p_node = p_head;
     ComplexListNode *p_node_copy_head = p_node->p_next;
-    ComplexListNode *p_node_copy = p_node->p_next;
+    ComplexListNode *p_node_copy = nullptr; 
 
     while (p_node) {
+        p_node_copy = p_node->p_next;
         p_node->p_next = p_node_copy->p_next; 
-        p_node = p_node->p_next;
-        p_node_copy->p_next = p_node->p_next; 
+        p_node = p_node_copy->p_next;
 
     }
     
@@ -78,20 +79,15 @@ ComplexListNode* splitList(ComplexListNode *p_head) {
 void Test(const char* testName, ComplexListNode* pHead)
 {
     if(testName != nullptr)
-        printf("%s begins:\n", testName);
+        printf("## %s begins: ##\n", testName);
 
-    printf("The original list is:\n");
+    printf("== The original list is: ==\n");
     printList(pHead);
 
-    //debug 
-    makeListCopy(pHead);
-    connectSibling(pHead);
-    printf("### DEBUG  The cloned list is: \n");
-    printList(pHead);
-
+    
     ComplexListNode* p_node_copy_head = cloneList(pHead);
 
-    printf("The cloned list is:\n");
+    printf("== The cloned list is: == \n");
     printList(p_node_copy_head);
 }
 
