@@ -19,13 +19,15 @@ using std::cout;
 using std::endl;
 
 bool readFromStream(std::istream&, int*);
+
+// tranverse tree by  pre-order
 void serializeBT(const BinaryTreeNode *p_head, ostream &os) {
     if (p_head == nullptr) {
-        os << "#"; 
+        os << "#" << ","; 
         return ;
     }
     
-    os << p_head->value << " ,";
+    os << p_head->value << ",";
     serializeBT(p_head->leftChild, os);
     serializeBT(p_head->rightChild, os);
 }      
@@ -49,8 +51,7 @@ bool readFromStream(std::istream &is, int *number) {
     if (is.eof())
         return false;
     
-    char buf[64];
-    buf[0] = '\0';
+    char buf[64]{'\0'};
 
     char ch;
     is >> ch;
