@@ -7,6 +7,11 @@
 
 
 #include <cstdio>
+#include <cstring>
+
+const int maxn = 2048;
+int n,  strs_hash[maxn] = {false};
+char strs_permut[maxn];
 
 void permutationCore(char *, char *);
 void strsPermutation(char *strs) {
@@ -34,6 +39,27 @@ void permutationCore(char *strs, char *sub_strs) {
     }
 }
 
+void strPermutationHash(char *strs, int index) {
+    if (strs == nullptr)
+        return ;
+    if (index == n) {
+        for (int i = 0; i < n; ++i)
+            printf("%c", strs_permut[i]);
+        printf("\t");
+        return ;
+    }
+
+    for (int i = 0; i < n; ++i) {
+        if (!strs_hash[i]) {
+            strs_permut[index] = strs[i]; 
+            strs_hash[i] = true;
+            strPermutationHash(strs, index+1);
+            strs_hash[i] = false;
+        } 
+    }
+}
+
+
 //==============================================================================
 //              Test
 //==============================================================================
@@ -47,7 +73,12 @@ void permutationCore(char *strs, char *sub_strs) {
         printf("Test for %s begins:\n", pStr);
 
     strsPermutation(pStr);
+    printf("\n");
 
+    printf("==hash permutation==\n");
+    if (pStr != nullptr)
+        n = strlen(pStr);
+    strPermutationHash(pStr, 0);
     printf("\n");
 }
 
